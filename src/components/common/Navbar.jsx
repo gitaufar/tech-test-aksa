@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { LuSun } from "react-icons/lu";
 import { IoIosMoon } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [username, setUsername] = useState("");
+    const { user, logout } = useUser();
     const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
     const applyTheme = (newTheme) => {
@@ -43,45 +44,18 @@ export default function Navbar() {
         }
     };
 
-    useEffect(() => {
-        applyTheme(theme);
-        const saved = localStorage.getItem("auth");
-        if (saved) {
-            const user = JSON.parse(saved);
-            setUsername(user.name);
-        }
-    }, []);
-
-    useEffect(() => {
-        const handleStorageChange = (e) => {
-            if (e.key === "auth") {
-                if (e.newValue) {
-                    const user = JSON.parse(e.newValue);
-                    setUsername(user.name);
-                } else {
-                    setUsername("");
-                }
-            }
-        };
-
-        window.addEventListener("storage", handleStorageChange);
-
-        return () => {
-            window.removeEventListener("storage", handleStorageChange);
-        };
-    }, []);
-
 
     useEffect(() => {
         applyTheme(theme);
     }, [theme]);
 
-    const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+    useEffect(() => {
+        if(!user) {
+            navigate("/login");
+        }
+    }, [])
 
-    const logout = () => {
-        localStorage.removeItem("auth");
-        window.location.href = "/login";
-    };
+    const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
     return (
         <nav className="fixed top-0 w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors">
@@ -108,7 +82,7 @@ export default function Navbar() {
                         onClick={toggleDropdown}
                         className="text-gray-900 dark:text-white cursor-pointer dark:hover:bg-gray-600 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded text-base"
                     >
-                        {username}
+                        <p className="truncate max-w-[15ch]">{user && user.name}</p>
                         <svg
                             className="w-4 h-4"
                             fill="none"
@@ -134,7 +108,10 @@ export default function Navbar() {
                                 Profil
                             </button>
                             <button
-                                onClick={logout}
+                                onClick={() => {
+                                    logout()
+                                    navigate("/login");
+                                }}
                                 className="text-left px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600"
                             >
                                 Logout

@@ -7,6 +7,8 @@ import LoginPage from "./components/page/LoginPage.jsx";
 import Middleware from "./components/common/Middleware.jsx";
 import Layout from "./components/common/Layout.jsx";
 import ProfilPage from "./components/page/ProfilPage.jsx";
+import { UserProvider } from "./context/UserContext.jsx";
+
 const savedTheme = localStorage.getItem("theme");
 if (
   savedTheme === "dark" ||
@@ -20,6 +22,7 @@ if (
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+      <UserProvider>
         <Routes>
           <Route element={<Layout />}>
             <Route
@@ -42,6 +45,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
           <Route path="/login" element={<LoginPage />} />
         </Routes>
+      </UserProvider>
     </BrowserRouter>
   </StrictMode>
 );

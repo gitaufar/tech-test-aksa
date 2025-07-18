@@ -5,9 +5,22 @@ export function getLostItems() {
     return data ? JSON.parse(data) : [];
 }
 
+export function getPaginatedItems(getItems, page = 1, limit = 5) {
+    const item = getItems();
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    return item.slice(startIndex, endIndex);
+}
+
 export function addLostItem(item) {
     const items = getLostItems();
     items.push(item);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
+
+export function deleteLostItem(index) {
+    const items = getLostItems();
+    items.splice(index, 1);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
 

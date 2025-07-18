@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useUser } from "../../context/UserContext";
+import Modal from "../common/Modal";
 
 export default function ProfilPage() {
-    const [user, setUser] = useState({});
+    const { user, setUser } = useUser();
     const [newName, setNewName] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         const auth = localStorage.getItem("auth");
@@ -17,6 +20,11 @@ export default function ProfilPage() {
         const updatedUser = { ...user, name: newName };
         setUser(updatedUser);
         localStorage.setItem("auth", JSON.stringify(updatedUser));
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
     };
 
     return (
@@ -42,6 +50,7 @@ export default function ProfilPage() {
                     </button>
                 </form>
             </div>
+            <Modal isOpen={modalOpen} onClose={closeModal} title="Change Name Success" children={<p>name changed to {newName}</p>} />
         </main>
     )
 }
