@@ -7,8 +7,7 @@ export function UserProvider({ children }) {
     const stored = localStorage.getItem("auth");
     return stored ? JSON.parse(stored) : null;
   });
-
-
+  
   const login = (userData) => {
     localStorage.setItem("auth", JSON.stringify(userData));
     setUser(userData);
@@ -28,8 +27,5 @@ export function UserProvider({ children }) {
 
 export function useUser() {
   const context = useContext(UserContext);
-  if (!context) {
-    throw new Error("useUser harus digunakan di dalam UserProvider");
-  }
   return context;
 }

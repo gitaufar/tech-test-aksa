@@ -1,2 +1,5 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

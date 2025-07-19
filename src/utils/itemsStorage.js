@@ -12,23 +12,29 @@ export function getPaginatedItems(getItems, page = 1, limit = 5) {
     return item.slice(startIndex, endIndex);
 }
 
+/*************  ✨ Windsurf Command 🌟  *************/
 export function addLostItem(item) {
     const items = getLostItems();
     items.push(item);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
+/*******  c6fc2d25-7bb7-404f-94d7-7e3dc30717b5  *******/
 
-export function deleteLostItem(index) {
+export function deleteLostItem(id) {
     const items = getLostItems();
-    items.splice(index, 1);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    const updatedItems = items.filter((item) => item.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedItems));
 }
 
-export function updateLostItem(index, updatedItem) {
+export function updateLostItem(id, updatedItem) {
     const items = getLostItems();
-    items[index] = updatedItem;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    const index = items.findIndex((item) => item.id === id);
+    if (index !== -1) {
+        items[index] = updatedItem;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }
 }
+
 
 export function searchLostItem(query) {
     const items = getLostItems();

@@ -30,7 +30,7 @@ export default function ProfilPage() {
     return (
         <main className='flex justify-center items-center h-screen bg-gray-100 dark:bg-gray-900'>
             <div className="bg-white dark:bg-gray-800 p-4 rounded shadow-md w-full max-w-md flex flex-col items-center">
-                <p className="text-xl font-semibold text-gray-900 dark:text-white">{user.name}</p>
+                <p className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-6">{user.name}</p>
                 <form className="flex flex-col w-full space-y-4" onSubmit={handleSubmit}>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="name" className="text-gray-900 dark:text-white text-base font-medium">Name</label>

@@ -58,9 +58,9 @@ export default function Navbar() {
     const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
     return (
-        <nav className="fixed top-0 w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors">
-            <div className="flex items-center py-4 px-12 justify-between">
-                <div className="flex flex-row gap-6">
+        <nav className="fixed top-0 w-full bg-white dark:bg-gray-800 shadow z-30 transition-colors">
+            <div className="flex flex-row-reverse md:flex-row items-center py-2 px-4 md:py-4 md:px-12 justify-between">
+                <div className="flex flex-row-reverse md:flex-row gap-2 md:gap-6">
                     <button onClick={toggleTheme} className="cursor-pointer duration-300 hover:rotate-180">
                         {theme === "dark" ? (
                             <IoIosMoon className="text-4xl dark:text-white" />
@@ -68,21 +68,21 @@ export default function Navbar() {
                             <LuSun className="text-4xl dark:text-white" />
                         )}
                     </button>
-                    <button onClick={setDefaultOsTheme} className="text-gray-900 dark:text-white cursor-pointer dark:hover:bg-gray-600 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded text-base">
+                    <button onClick={setDefaultOsTheme} className="text-gray-900 dark:text-white cursor-pointer dark:hover:bg-gray-600 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded text-sm md:text-base">
                         Default
                     </button>
                 </div>
 
-                <a href="/" className="text-2xl font-medium p-4 rounded hover:bg-gray-200 duration-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white">
+                <a href="/" className="text-2xl font-medium p-4 rounded hover:bg-gray-200 duration-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white hidden md:block">
                     Home
                 </a>
 
                 <div className="relative">
                     <button
                         onClick={toggleDropdown}
-                        className="text-gray-900 dark:text-white cursor-pointer dark:hover:bg-gray-600 flex items-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded text-base"
+                        className="text-gray-900 w-36 dark:text-white cursor-pointer dark:hover:bg-gray-600 flex items-center justify-between bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded text-base"
                     >
-                        <p className="truncate max-w-[15ch]">{user && user.name}</p>
+                        <p className="truncate">{user && user.name}</p>
                         <svg
                             className="w-4 h-4"
                             fill="none"
@@ -101,6 +101,12 @@ export default function Navbar() {
 
                     {dropdownOpen && (
                         <div className="absolute text-gray-900 right-0 mt-2 w-full dark:text-white bg-white dark:bg-gray-700 shadow flex flex-col rounded">
+                            <button
+                                onClick={() => navigate("/")}
+                                className="text-left px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 md:hidden"
+                            >
+                                Home
+                            </button>
                             <button
                                 onClick={() => navigate("/profil")}
                                 className="text-left px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600"
