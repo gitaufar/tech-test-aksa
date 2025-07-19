@@ -12,13 +12,11 @@ export function getPaginatedItems(getItems, page = 1, limit = 5) {
     return item.slice(startIndex, endIndex);
 }
 
-/*************  ✨ Windsurf Command 🌟  *************/
 export function addLostItem(item) {
     const items = getLostItems();
     items.push(item);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
-/*******  c6fc2d25-7bb7-404f-94d7-7e3dc30717b5  *******/
 
 export function deleteLostItem(id) {
     const items = getLostItems();

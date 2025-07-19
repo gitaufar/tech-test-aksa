@@ -8,7 +8,7 @@ export default function Form({ isOpen, onClose, formData, setFormData, handleSub
                 onClick={(e) => e.stopPropagation()}
                 className="bg-white rounded shadow-md dark:bg-gray-800 flex flex-col space-y-4 w-full max-w-md p-4"
             >
-                <p className="font-semibold text-center text-gray-900 dark:text-white">Masukkan Data Barang Hilang Anda</p>
+                <p className="font-semibold text-center text-gray-900 dark:text-white">Enter Your Lost Item Details</p>
 
                 <input
                     type="text"

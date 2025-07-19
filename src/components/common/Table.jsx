@@ -82,15 +82,16 @@ export default function Table({
                 </tbody>
             </table>
 
-            {/* Pagination */}
             <div className='flex gap-4 mt-4 justify-center'>
                 <button
                     onClick={() => setPage(page - 1)}
                     disabled={page <= 1}
-                    className='disabled:opacity-50 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer'
+                    className={`${page > 1 ? 'hover:bg-blue-400' : ''
+                        } transition-colors disabled:opacity-50 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer`}
                 >
                     Previous
                 </button>
+
                 <input
                     type='number'
                     value={page}
@@ -106,10 +107,12 @@ export default function Table({
                     max={Math.ceil(allItemsLength / 5)}
                     min={1}
                 />
+
                 <button
                     onClick={() => setPage(page + 1)}
                     disabled={page >= Math.ceil(allItemsLength / 5)}
-                    className='disabled:opacity-50 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer'
+                    className={`${page < Math.ceil(allItemsLength / 5) ? 'hover:bg-blue-400' : ''
+                        } transition-colors disabled:opacity-50 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer`}
                 >
                     Next
                 </button>
