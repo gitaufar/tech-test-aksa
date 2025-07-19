@@ -112,7 +112,7 @@ export default function App() {
     }
 
     return (
-      <main className='flex flex-col min-h-screen md:justify-center lg:justify-start pb-8 bg-gray-100 dark:bg-gray-900 pt-16 md:pt-28 px-4 gap-6 items-center overflow-hidden'>
+      <main className='flex flex-col min-h-screen md:justify-center lg:justify-start pb-8 bg-gray-100 dark:bg-gray-900 pt-20 md:pt-28 px-4 gap-6 items-center overflow-hidden'>
         <Form isOpen={isOpen} onClose={() => {
           setIsOpen(false)
           resetForm()
