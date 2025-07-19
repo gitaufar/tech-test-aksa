@@ -1,3 +1,8 @@
+# Dummy Account
+- name: budi,password: budi123
+- name: agus,password: agus123
+- name: rina,password: rina123
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
